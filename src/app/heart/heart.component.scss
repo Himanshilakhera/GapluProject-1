@@ -1,0 +1,50 @@
+:host {
+  position: relative;
+
+  &.active {
+    .animated__heart {
+      animation: hearted 1s forwards ease-out; // infinite/forwards to end or repeat animation
+    }
+
+    .heart__main {
+      fill: red;
+      transform: scale(1.25);
+    }
+  }
+
+}
+
+.heart__main {
+  margin: 0;
+  z-index: 99;
+}
+
+.animated__heart {
+  position: absolute;
+  transition: 0.5s ease-out;
+  offset-path: path('M 12 12'); // initial position behind heart
+
+  &.odd,
+  &.even {
+    transform: scale(.5);
+    // animation-delay: .5s;
+  }
+}
+
+@keyframes hearted {
+  0% {
+    offset-distance: 0%;
+    transform: scale(.5);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    offset-distance: 100%;
+    transform: scale(.5);
+    opacity: 0;
+  }
+}

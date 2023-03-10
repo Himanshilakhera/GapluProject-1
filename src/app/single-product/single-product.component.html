@@ -1,0 +1,173 @@
+<!-- BacktoTop Start -->
+<div id="thetop"></div>
+<div id="backtotop">
+  <a href="#" id="scroll">
+    <i class="far fa-arrow-up"></i>
+  </a>
+</div>
+<!-- BacktoTop End -->
+<ngx-spinner type="ball-beat"></ngx-spinner>
+
+<!-- Main Body Start -->
+<main class="mt-0">
+
+  <app-sidebar></app-sidebar>
+
+  <!-- Single Products Start -->
+  <section class="product_section sec_ptb_130 bg_gray clearfix top_section">
+    <div class="container">
+      <div class="product_container">
+        <div class="prdc_navigation">
+          <div class="prdc_nav_back">
+            <h3><a routerLink="/products"><span><i class="far fa-chevron-left"></i></span> Back to products</a></h3>
+          </div>
+        </div>
+        <div class="prdct_title">
+          <h2>{{Response.title}}</h2>
+        </div>
+        <div>
+          <p>
+            <button mat-button (click)="openDialog()">Add Comments</button>
+          </p>
+        </div>
+        <div class="prdct_images">
+          <div class="prdct_images_row">
+            <div class="prdct_images_single">
+              <div class="prdct_image_box">
+                <img src="{{Response.images[0].original}}" alt="img">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="prdct_info">
+          <div class="prdct_info_row">
+            <div class="prdct_info_col">
+              <div class="prdct_info_box">
+                <h3>Price</h3>
+                <h4 class="color_success">Rs. {{Response.attributes[1].option_group}}</h4>
+              </div>
+            </div>
+            <div class="prdct_info_col">
+              <div class="prdct_info_box">
+                <h3>Color</h3>
+                <h4>{{Response.attributes[0].option_group}}</h4>
+              </div>
+            </div>
+            <div class="prdct_info_col">
+              <div class="prdct_info_box">
+                <h3>Size</h3>
+                <h4>{{Response.attributes[2].option_group}}</h4>
+              </div>
+            </div>
+            <div class="prdct_info_col">
+              <div class="prdct_info_box">
+                <h3>Min. Qty. Order</h3>
+                <h4>3</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="prdct_desc">
+          <div class="prdct_desc_box">
+            <h4>Delivery & Return Policy</h4>
+            <p>We provide free shipping on all orders. Pay online to avoid charges of ₹50/product applicable on COD
+              orders. The return or exchange is not available for customized products. Every delivery from us is
+              processed under excellent condition and in the fastest time possible. For our beloved customer’s care,
+              we
+              give contactless delivery.</p>
+          </div>
+          <div class="prdct_desc_box">
+            <h4>Product Description :</h4>
+            <div>{{Response.description}}</div>
+            <ul>
+              <li>100% Bio-washed Cotton – makes the fabric extra soft & silky</li>
+              <li>Flexible ribbed crew neck</li>
+              <li>Precisely stitched with no pilling & no fading</li>
+              <li>Provide all-time comfort. Anytime, anywhere</li>
+              <li>Your favorite design with matte-finish HD print</li>
+            </ul>
+          </div>
+          <div class="prdct_desc_box">
+            <h4>Size & Fitting :</h4>
+            <ul>
+              <li>Every T-shirt is tailored with regular fit over years of testing.</li>
+              <li>Please refer to the size chart for more accuracy.</li>
+            </ul>
+          </div>
+          <div class="prdct_desc_box">
+            <h4>Wash Care:</h4>
+            <ul>
+              <li>Cold and gentle machine wash</li>
+              <li>Avoid using brushes</li>
+              <li>Dry in shade</li>
+              <li>Use mild detergent only</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="prdct_order_area">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12 col-xs-12">
+              <div class="section_title text-center mb_50 wow fadeInUp2" data-wow-delay=".1s"
+                style="visibility: hidden; animation-delay: 0.1s; animation-name: none;">
+                <h4 class="small_title">Order Now</h4>
+                <h2 class="big_title mb-0">
+                  Enter details below to complete your order
+                </h2>
+                <span class="biggest_title">Order</span>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="prdct_order_form auth_form">
+              <div class="row">
+
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Email address</label>
+                    <div>
+                      {{email}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="number" class="form-control" placeholder="Phone number" formControlName="phoneNo">
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" class="form-control" placeholder="company name" formControlName="company">
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Logo</label>
+
+                    <input type="file" name="files" accept="image/*" (change)="handleFileInput($event)"
+                      class="form-control-file" id="image">
+                  </div>
+                  <div *ngIf="previewImage">
+                    <img [src]="previewImage" alt="Preview Image" class="img-thumbnail" style="border-radius:50% ; height: 200px;
+                    width: 200px;">
+                  </div>
+                </div>
+
+                <button type="submit" class="custom_btn bg_default_blue">Complete Order<span><i
+                      class="fal fa-arrow-right"></i></span></button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Single Products End -->
+
+
+
+</main>
+<!-- Main Body End -->

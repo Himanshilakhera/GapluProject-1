@@ -1,0 +1,224 @@
+<!-- BacktoTop Start -->
+<div id="thetop"></div>
+<div id="backtotop">
+  <a href="#" id="scroll">
+    <i class="far fa-arrow-up"></i>
+  </a>
+</div>
+<!-- BacktoTop End -->
+
+<ngx-spinner type="ball-beat"></ngx-spinner>
+
+<!-- Main Body Start -->
+<main class="mt-0">
+
+  <app-sidebar></app-sidebar>
+
+  <!-- Page Heading Start -->
+  <section class="breadcrumb_section d-flex align-items-center clearfix top_section">
+    <div class="container">
+      <div class="row align-items-center justify-content-lg-between">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-delay=".1s">
+          <h1 class="page_title mb-0">My Account</h1>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-delay=".1s">
+          <ul class="breadcrumb_nav ul_li_right clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>My Account</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Heading End -->
+
+
+  <!-- Dashboard Start -->
+  <section class="dashboard_section sec_ptb_130 bg_gray clearfix">
+    <div class="container">
+      <ul class="rspnsv_tab">
+        <li class="active" rel="tab1" (click)="myOrder()"><span><i class="fas fa-shopping-basket"></i></span> My Orders
+        </li>
+        <li rel="tab2" (click)="myFavourites()"><span><i class="far fa-heart"></i></span> My Favourites</li>
+        <li rel="tab3" (click)="trackOrders()"><span><i class="fas fa-truck-moving"></i></span> Track Order</li>
+        <li rel="tab4" (click)="accountDetails()"><span><i class="fas fa-user-cog"></i></span> Account Details</li>
+      </ul>
+      <div class="rspnsv_tab_container">
+        <h3 class="rspnsv_tab_active rspnsv_tab_drawer_heading" rel="tab1"><span><i
+              class="fas fa-shopping-basket"></i></span> My Orders</h3>
+        <div *ngIf="isShowMyOrders">
+          <div class="order_items_list">
+            <div class="order_item" *ngFor="let i of order">
+              <div class="order_item_title">
+                <div class="order_item_img">
+                  <img src="{{i.logo}}" alt="img">
+                </div>
+                <div class="order_item_txt">
+                  <h3>{{i.company_name}}</h3>
+                  <h5>Size : <span>L</span></h5>
+                </div>
+              </div>
+              <div class="order_item_price order_item_txt">
+                <h3>Rs. 699.00</h3>
+                <h5>Qty. <span>1</span></h5>
+              </div>
+              <div class="order_item_status order_item_txt">
+                <h3>Status : <span class="color_warning">In-transit</span></h3>
+                <h5><a href="#">Track Order</a></h5>
+              </div>
+            </div>
+            <!-- <div class="order_item">
+                <div class="order_item_title">
+                  <div class="order_item_img">
+                    <img src="../../assets/images/banner/banner1.jpg" alt="img">
+                  </div>
+                  <div class="order_item_txt">
+                    <h3>Grey Hoodie</h3>
+                    <h5>Size : <span>L</span></h5>
+                  </div>
+                </div>
+                <div class="order_item_price order_item_txt">
+                  <h3>Rs. 999.00</h3>
+                  <h5>Qty. <span>1</span></h5>
+                </div>
+                <div class="order_item_status order_item_txt">
+                  <h3>Status : <span class="color_success">Delivered</span></h3>
+                   <h5><a href="#">Track Order</a></h5> -->
+            <!-- </div>
+              </div> -->
+          </div>
+        </div>
+        <h3 class="rspnsv_tab_drawer_heading" rel="tab2"><span><i class="far fa-heart"></i></span> My Favourites</h3>
+        <div *ngIf="isShowMyFav">
+          <div class="order_items_list favourite_items_list">
+            <div class="order_item" *ngFor="let data of response">
+              <div class="order_item_title">
+                <div class="order_item_img">
+                  <img src="{{data.product.images[0].original}}" alt="img">
+                </div>
+                <div class="order_item_txt">
+                  <h3>{{data.product.title}}</h3>
+                </div>
+              </div>
+              <div class="order_item_price order_item_txt">
+                <h3>Rs.{{data.product.attributes[1].option_group}}</h3>
+
+              </div>
+              <div class="order_item_status order_item_txt">
+                <h5><a href="#" class="color_danger"><i class="fas fa-trash-alt"></i> Remove</a></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="rspnsv_tab_drawer_heading" rel="tab3"><span><i class="fas fa-truck-moving"></i></span> Track Order
+        </h3>
+        <div *ngIf="isShowTrackOrder">
+          <div class="order_tracking">
+            <h2>Order Tracking</h2>
+            <p>To track your please enter your OrderID in the box below and press "Track Order" button. This was given
+              to you on your receipt and in the confirmation email you should have received.</p>
+            <div class="auth_form">
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Order ID no.</label>
+                    <input type="text" class="form-control" placeholder="Enter your order no.">
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <div class="form-group">
+                    <label class="form-label">Billing Email address</label>
+                    <input type="email" class="form-control" placeholder="Enter your email">
+                  </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                  <button type="submit" class="custom_btn bg_default_blue">Track Order <span><i
+                        class="fal fa-arrow-right"></i></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="rspnsv_tab_drawer_heading" rel="tab4"><span><i class="fas fa-user-cog"></i></span> Account Details
+        </h3>
+        <div *ngIf="isShowAccountDetails">
+          <div class="account_dtl">
+            <h2>Account Details</h2>
+            <form (ngSubmit)="submitForm()" #myForm="ngForm">
+              <div class="auth_form">
+
+                <div class="row">
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="image-container-image">
+
+                      <label for="image">Image Upload</label>
+                      <input type="file" *ngIf="isFillDetail" (change)="onFileSelected($event)"
+                        class="form-control-file" id="image" name="image" [(ngModel)]="formData.image"
+                        [ngModelOptions]="{standalone: true}">
+
+                      <div *ngIf="isShowDetails">
+                        {{user_profile}}
+                        <div *ngIf="previewImage">
+                          <img [src]="previewImage" alt="Preview Image" class="img-thumbnail" style="border-radius:50% ; height: 200px;
+                          width: 200px;">
+                        </div>
+                      </div>
+                    </div>
+                    <div *ngIf="previewImage">
+                      <img [src]="previewImage" alt="Preview Image" class="img-thumbnail" style="border-radius:50% ; height: 200px;
+                      width: 200px;">
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                      <label class="form-label">First Name</label>
+                      <input *ngIf="isFillDetail" type="text" class="form-control" placeholder="Enter first name"
+                        [(ngModel)]="formData.firstname" [ngModelOptions]="{standalone: true}">
+                      <div *ngIf="isShowDetails">
+                        {{first_name}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                      <label class="form-label">Last Name</label>
+                      <input *ngIf="isFillDetail" type="text" class="form-control" placeholder="Enter last name"
+                        [(ngModel)]="formData.lastname" [ngModelOptions]="{standalone: true}">
+                      <div *ngIf="isShowDetails">
+                        {{last_name}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                      <label class="form-label">Email Address</label>
+                      <div>
+                        {{email}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" *ngIf="isShowSaveButton">
+                    <button type="submit" class="custom_btn bg_default_blue">Save Changes <span><i
+                          class="fal fa-arrow-right"></i></span></button>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" *ngIf="isShowEditButton">
+                    <button type="submit" class="custom_btn bg_default_blue" (click)="editDetails()">Edit Details
+                      <span><i class="fal fa-arrow-right"></i></span></button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <!-- Dashboard End -->
+
+
+
+</main>
+<!-- Main Body End -->

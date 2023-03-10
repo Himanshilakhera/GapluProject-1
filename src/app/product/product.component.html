@@ -1,0 +1,107 @@
+<!-- BacktoTop Start -->
+<div id="thetop"></div>
+<div id="backtotop">
+  <a href="#" id="scroll">
+    <i class="far fa-arrow-up"></i>
+  </a>
+</div>
+<!-- BacktoTop End -->
+
+<ngx-spinner type="ball-beat"></ngx-spinner>
+
+<!-- Main Body Start -->
+<main class="mt-0">
+
+  <!-- Sidebar Start -->
+  <app-sidebar></app-sidebar>
+  <!-- Sidebar End -->
+
+
+  <!-- Page Heading Start -->
+  <section class="breadcrumb_section d-flex align-items-center clearfix top_section">
+    <div class="container">
+      <div class="row align-items-center justify-content-lg-between">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-delay=".1s">
+          <h1 class="page_title mb-0">Shop</h1>
+        </div>
+
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-delay=".1s">
+          <ul class="breadcrumb_nav ul_li_right clearfix">
+            <li><a href="index.html">Home</a></li>
+            <li>Shop</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Page Heading End -->
+
+
+  <!-- Products Start -->
+  <section class="shop_section sec_ptb_130 bg_gray clearfix">
+    <div class="container">
+      <div class="product_selection_bar wow fadeInUp2 clearfix" data-wow-delay=".1s">
+        <div
+          class="product_filterbar row align-items-center justify-content-lg-between justify-content-md-center justify-content-sm-center">
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <div class="searchBarClass">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Search</mat-label>
+                <mat-icon matPrefix>search</mat-icon>
+                <input type="text" matInput (keydown.enter)="search($event)" [(ngModel)]="searchValue">
+                <!-- <button mat-raised-button>Basic</button> -->
+                <mat-icon matSuffix (click)="close()">close</mat-icon>
+
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <select class="form-control" (change)="getCategoryValue($event)">
+              <option value="3">select category</option>
+              <ng-container *ngFor="let i of list">
+                <option value="i">{{i.name}}</option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+            <div class="select_option mb-0">
+              <select class="form-control">
+                <option data-display="Short By">Select A Option</option>
+                <option value="Name" selected>Name</option>
+                <option value="Price">Price</option>
+                <option value="Size">Size</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row align-items-center justify-content-lg-between justify-content-md-center justify-content-sm-center">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <p class="result_text">Showing 1–9 of 17 results</p>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 wow fadeInUp2" data-wow-delay=".1s" *ngFor="let i of response">
+          <div class="product_card text-center" (click)="getItem(i)">
+            <a class="item_image" href="javascript:void(0)">
+
+              <img src={{i.images[0].original}} alt="image_not_found">
+            </a>
+            <div class="item_content">
+              <h3 class="item_title">{{i.title}}</h3>
+            </div>
+          </div>
+          <heart [PId]="i.id"></heart>
+        </div>
+
+        <mat-paginator [length]="length" [pageIndex]="pageIndex" [pageSize]="1" aria-label="Select page"
+          (page)="pageEvent = getServerData($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </section>
+  <!-- Products End -->
+
+</main>
+<!-- Main Body End -->

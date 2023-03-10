@@ -1,0 +1,58 @@
+<ngx-spinner type="ball-beat"></ngx-spinner>
+
+<!-- Main Body Start -->
+<main class="mt-0">
+
+  <!-- Register Start -->
+  <section class="auth_wrapper">
+    <div class="row">
+      <div class="col auth_wrapper_left">
+        <div class="auth_left_txt">
+          <div class="auth_logo">
+            <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo"></a>
+          </div>
+          <div class="auth_txt">
+            <h3>Sign Up</h3>
+            <h2>Gaplu made gifting simple for organizations.</h2>
+            <p>Already a member? <a routerLink="/login">Login here</a>
+
+          </div>
+          <div class="auth_copyright">
+            <h6>© Copyright | <a href="index.html"> Gaplu</a></h6>
+          </div>
+        </div>
+      </div>
+      <div class="col auth_wrapper_right">
+        <div class="auth_form_area">
+          <div class="auth_form_heading">
+            <h2>Welcome!</h2>
+            <h3>Create an Account</h3>
+          </div>
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="auth_form">
+
+              <div class="form-group">
+                <label class="form-label">Email address</label>
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+              </div>
+
+              <div class="form_action">
+                <div class="form-check float-start">
+                  <input class="form-check-input" type="checkbox" id="terms">
+                  <label class="form-check-label" for="terms">
+                    I agree to the terms of service
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="custom_btn bg_default_blue">Register<span><i
+                    class="fal fa-arrow-right"></i></span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Register End -->
+
+</main>
+<!-- Main Body End -->
